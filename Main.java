@@ -33,7 +33,7 @@ public class Main {
         int i = 0;
 
         try {
-            for (String retval : Str.split("")) {
+            for (String retval : Str.split(" ")) {
                 splitting[i] = retval;
                 i++;
             }
