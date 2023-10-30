@@ -1,17 +1,20 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+//приветствие
+
         String input = null;
         System.out.println(calc(input));
     }
 
-    public static String calc(String input) {
+    public static String calc(String input) throws Exception {
+
+        boolean n1rome = false, n2rome = false;
         int n1real = 0, n2real = 0, rezultrim = 0;
         int num1 = 0;
         int num2 = 0;
-        boolean n1rom = false, n2rom = false;
-        char[] task1 = new char[10];
+        char[] zadacha1 = new char[10];
         String[] rim = new String[13];
         rim[0] = "I";
         rim[1] = "II";
@@ -26,49 +29,58 @@ public class Main {
         rim[10] = "XL";
         rim[11] = "L";
         rim[12] = "C";
+
+
         Scanner in = new Scanner(System.in);
-        String task = in.nextLine();
-        String[] splitting = new String[3];
-        String Str = new String(task);
+        String zadacha = in.nextLine();
+
+        String[] razbienie = new String[3];
+        String Str = new String(zadacha);
         int i = 0;
 
         try {
             for (String retval : Str.split(" ")) {
-                splitting[i] = retval;
+                razbienie[i] = retval;
                 i++;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("throws Exception");
             e.getStackTrace();
             System.exit(0);
         }
 
-        if (null == splitting[0] || splitting[0].isEmpty()) {
+        if (null == razbienie[0] || razbienie[0].isEmpty()) {
+            System.out.println("throws Exception");
             System.exit(0);
         }
-        if (null == splitting[2] || splitting[2].isEmpty()) {
+        if (null == razbienie[2] || razbienie[2].isEmpty()) {
+            System.out.println("throws Exception");
             System.exit(0);
         }
-        if (splitting[1].length() > 1) {
+        if (razbienie[1].length() > 1) {
+            System.out.println("throws Exception");
             System.exit(0);
         }
 
 
         try {
-            num1 = Integer.parseInt(splitting[0]);
+            num1 = Integer.parseInt(razbienie[0]);
         } catch (NumberFormatException e) {
-            n1rom = true;
+            n1rome = true;
         }
         try {
-            num2 = Integer.parseInt(splitting[2]);
+            num2 = Integer.parseInt(razbienie[2]);
         } catch (NumberFormatException e) {
-            n2rom = true;
+            n2rome = true;
         }
-        if (n2rom != n1rom) {
-        } else if (n1rom == true) {
-            if (splitting[0].equals(rim[3])) n1real = 4;
-            else if (splitting[0].equals(rim[8])) n1real = 9;
+        if (n2rome != n1rome) {
+            System.out.println("throws Exception");
+        } else if (n1rome == true) {
+            if (razbienie[0].equals(rim[3])) n1real = 4;
+            else if (razbienie[0].equals(rim[8])) n1real = 9;
             else {
-                char[] romechar1 = splitting[0].toCharArray();
+                char[] romechar1 = razbienie[0].toCharArray();
+
                 for (i = 0; i < romechar1.length; i++) {
                     switch (romechar1[i]) {
                         case 'I':
@@ -82,12 +94,13 @@ public class Main {
                             break;
 
                     }
+
                 }
             }
-            if (splitting[2].equals(rim[3])) n2real = 4;
-            else if (splitting[2].equals(rim[8])) n2real = 9;
+            if (razbienie[2].equals(rim[3])) n2real = 4;
+            else if (razbienie[2].equals(rim[8])) n2real = 9;
             else {
-                char[] romechar2 = splitting[2].toCharArray();
+                char[] romechar2 = razbienie[2].toCharArray();
                 for (i = 0; i < romechar2.length; i++) {
                     switch (romechar2[i]) {
                         case 'I':
@@ -101,6 +114,7 @@ public class Main {
                             break;
 
                     }
+
                 }
             }
             if (n1real < 0) ;
@@ -108,9 +122,9 @@ public class Main {
             else if (n2real < 0) ;
             else if (n2real > 10.1) ;
             else {
-                task1 = task.toCharArray();
-                for (int b = 0, n = task1.length; b < n; b++) {
-                    switch (task1[b]) {
+                zadacha1 = zadacha.toCharArray();
+                for (int b = 0, n = zadacha1.length; b < n; b++) {
+                    switch (zadacha1[b]) {
                         case '+':
                             rezultrim = n1real + n2real;
                             break;
@@ -130,71 +144,75 @@ public class Main {
                 if (rezultrim <= 10)
                     System.out.println(rim[rezultrim - 1]);
                 else {
+
                     char[] convert = ("" + rezultrim).toCharArray();
-                    String[] romanNumeral = new String[10];
+                    String[] rezultrimbig = new String[10];
                     if (convert.length == 100) System.out.println(rim[12]);
                     else {
                         switch (convert[0]) {
                             case '1':
-                                romanNumeral[0] = rim[9];
+                                rezultrimbig[0] = rim[9];
                                 break;
                             case '2':
-                                romanNumeral[0] = rim[9];
-                                romanNumeral[1] = rim[9];
+                                rezultrimbig[0] = rim[9];
+                                rezultrimbig[1] = rim[9];
                                 break;
                             case '3':
-                                romanNumeral[0] = rim[9];
-                                romanNumeral[1] = rim[9];
-                                romanNumeral[3] = rim[9];
+                                rezultrimbig[0] = rim[9];
+                                rezultrimbig[1] = rim[9];
+                                rezultrimbig[3] = rim[9];
                                 break;
                             case '4':
-                                romanNumeral[0] = rim[10];
+                                rezultrimbig[0] = rim[10];
                                 break;
                             case '5':
-                                romanNumeral[0] = rim[11];
+                                rezultrimbig[0] = rim[11];
                                 break;
                             case '6':
-                                romanNumeral[0] = rim[11];
-                                romanNumeral[1] = rim[9];
+                                rezultrimbig[0] = rim[11];
+                                rezultrimbig[1] = rim[9];
                                 break;
                             case '7':
-                                romanNumeral[0] = rim[11];
-                                romanNumeral[1] = rim[9];
-                                romanNumeral[2] = rim[9];
+                                rezultrimbig[0] = rim[11];
+                                rezultrimbig[1] = rim[9];
+                                rezultrimbig[2] = rim[9];
                                 break;
                             case '8':
-                                romanNumeral[0] = rim[11];
-                                romanNumeral[1] = rim[9];
-                                romanNumeral[2] = rim[9];
-                                romanNumeral[3] = rim[9];
+                                rezultrimbig[0] = rim[11];
+                                rezultrimbig[1] = rim[9];
+                                rezultrimbig[2] = rim[9];
+                                rezultrimbig[3] = rim[9];
                                 break;
                             case '9':
-                                romanNumeral[0] = rim[11];
-                                romanNumeral[1] = rim[10];
+                                rezultrimbig[0] = rim[11];
+                                rezultrimbig[1] = rim[10];
                                 break;
 
                         }
-                        for (i = 0; i < romanNumeral.length; i++) {
-                            if (romanNumeral[i] != null)
-                                System.out.print(romanNumeral[i]);
+                        for (i = 0; i < rezultrimbig.length; i++) {
+                            if (rezultrimbig[i] != null)
+                                System.out.print(rezultrimbig[i]);
                         }
+
                         i = Character.getNumericValue(convert[1]);
                         i = i - 1;
+
                         if (i > 0)
                             System.out.print(rim[i]);
                     }
 
                 }
             } else
-                System.exit(0);
+                System.out.println("throws Exception");
+            System.exit(0);
         } else if (num1 < 0) ;
         else if (num1 > 10.1) ;
         else if (num2 < 0) ;
         else if (num2 > 10.1) ;
         else {
-            task1 = task.toCharArray();
-            for (int b = 0, n = task1.length; b < n; b++) {
-                switch (task1[b]) {
+            zadacha1 = zadacha.toCharArray();
+            for (int b = 0, n = zadacha1.length; b < n; b++) {
+                switch (zadacha1[b]) {
                     case '+':
                         input = String.valueOf(num1 + num2);
                         break;
